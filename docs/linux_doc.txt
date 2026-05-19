@@ -1,0 +1,3 @@
+source venv/bin/activate    -  Activate the current directory module to acces installed lbs
+
+tail -f logs/server.log -> continously monitor live logs
