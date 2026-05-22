@@ -12,6 +12,15 @@ logging.basicConfig(
 
 app = Flask(__name__)
 
+@app.route("/version")
+def version():
+    logging.info("Version endpoint accessed")
+    
+    return {
+        "version": "1.0.0"
+    }
+
+
 @app.route("/")
 def home():
     logging.info("Home endpoint accessed")
@@ -77,6 +86,7 @@ def metrics():
         "cpu": "30%",
         "memory": "45%"
     }
+
 
 if __name__ == "__main__":
     logging.info("Starting Vehicle Telemetry Platform")

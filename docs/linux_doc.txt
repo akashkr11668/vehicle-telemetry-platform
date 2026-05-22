@@ -1,3 +1,11 @@
 source venv/bin/activate    -  Activate the current directory module to acces installed lbs
 
 tail -f logs/server.log -> continously monitor live logs
+
+mkdir -p monitoring_logs  ->  create folder safely Even if parent folders missing.
+
+tee -a monitoring_logs/health.log   ->  Normally echo only prints terminal. tee does BOTH:-
+print terminal
+save to file
+
+-a  ->  append (Add new logs without deleting old ones.)

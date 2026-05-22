@@ -1,0 +1,78 @@
+1. touch Dockerfile   -> Create docker file for automation
+
+2. docker build -t telemetry-backend .
+
+Part	                    Meaning
+docker build	            build image
+-t	                        tag/name
+telemetry-backend	        image name
+.	                        current directory
+
+3. docker images  -> Shows available images.
+
+4. docker run -p 5000:5000 telemetry-backend   -> Run Container on Port 5000
+
+5. docker stop <container_id>  -> stop the running Container
+
+docker compose up --build
+
+docker ps  -> to see all the running containers
+
+docker compose down   -> to kill all the running containers
+
+Docker Volumes  -> to store logs and artiticats even AFTER DELETING THE Container
+
+ volumes:
+    - ./logs:/app/logs
+    host_folder:container_folder
+
+    -   ./logs	logs folder on your machine
+        /app/logs	logs folder inside container
+
+docker exec -it telemetry_backend bash  - > to see inside the conatiners
+
+ps aux  =>  Check Running Processes Inside container
+
+docker inspect telemetry_backend  ->  Gives detailed container information IN JSON
+
+Real DevOps Workflow:
+
+build image
+     |
+run containers
+     |
+check logs
+     |
+debug issues
+     |
+restart containers
+
+
+
+Your Current Docker Mental Model
+
+You now understand:
+
+Project Files
+     |
+Dockerfile
+     |
+docker build
+     |
+Image
+     |
+docker run
+     |
+Container
+
+AND:
+
+containers are isolated
+compose automates multi-container setup
+networks connect containers
+volumes persist data
+env vars configure applications
+layers optimize builds
+.dockerignore optimizes build context
+multi-stage builds separate build/runtime
+

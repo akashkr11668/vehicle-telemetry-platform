@@ -2,8 +2,12 @@ import requests
 import random
 import time
 import logging
+import os
 
-BACKEND_URL = "http://localhost:5000/telemetry"
+BACKEND_URL = os.getenv(
+    "BACKEND_URL",
+    "http://backend:5000/telemetry"
+)
 
 vehicle_ids = [
     "CAR_001",
@@ -17,7 +21,7 @@ while True:
         "vehicle_id": random.choice(vehicle_ids),  # randomly choose vehicle_ids
         "speed": random.randint(0, 150),  # randomly choose values between 0 to 150
         "engine_temp": random.randint(70, 120),
-        "fuel_level": random.randint(-20, 120)
+        "fuel_level": random.randint(-20, 120)  #randomly choose values between -20 to 120 but negative gives an err
     }
 
     # This sends HTTP POST request to backend.
