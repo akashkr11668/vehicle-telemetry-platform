@@ -22,5 +22,8 @@ jobs:
       - name: Start Containers
         run: docker compose up -d
 
+      - name: Wait for Backend
+        run: sleep 10
+
       - name: Check Backend Health
         run: curl http://localhost:5000/health
