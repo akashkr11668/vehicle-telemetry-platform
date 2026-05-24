@@ -10,6 +10,6 @@
     else
         echo "Docker is NOT running"
     exit 1
-fi
+    fi
 
     docker compose up --build

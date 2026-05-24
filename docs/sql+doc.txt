@@ -1,0 +1,10 @@
+docker exec -it telemetry_database bash   ->  Now inside database container.
+
+psql -U admin -d telemetry   =>  Now you are INSIDE real database shell.
+
+\dt  ->  Shows database tables.
+
+SELECT * FROM telemetry_data;
+
+DELETE FROM telemetry_data
+WHERE id > 50;

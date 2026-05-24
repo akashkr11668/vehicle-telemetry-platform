@@ -19,3 +19,28 @@ services:
     command: python3 simulator/vehicle_simulator.py
     depends_on:
       - backend
+
+  database:
+    image: postgres:15
+    container_name: telemetry_database
+
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: telemetry
+
+    ports:
+      - "5432:5432"
+
+  prometheus:
+    image: prom/prometheus
+    container_name: telemetry_prometheus
+
+    ports:
+      - "9090:9090"
+
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+    depends_on:
+      - backend
