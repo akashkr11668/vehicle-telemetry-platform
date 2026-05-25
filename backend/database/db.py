@@ -2,6 +2,8 @@ import psycopg2
 import logging
 import time
 
+import os
+
 connection = None
 
 while connection is None:
@@ -10,10 +12,10 @@ while connection is None:
 
         connection = psycopg2.connect(
             host="database",
-            database="telemetry",
-            user="admin",
-            password="password"
-        )
+            database=os.getenv("POSTGRES_DB"),
+            user=os.getenv("POSTGRES_USER"),
+            password=os.getenv("POSTGRES_PASSWORD")
+)
 
         logging.info("Database connected successfully")
 

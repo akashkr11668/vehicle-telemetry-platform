@@ -4,6 +4,8 @@ from flask import (
     jsonify
 )
 
+from middleware.auth_middleware import require_api_key
+
 import logging
 
 from services.telemetry_service import process_telemetry
@@ -21,6 +23,11 @@ telemetry_routes = Blueprint(
 
 @telemetry_routes.route('/telemetry', methods=['POST'])
 def telemetry():
+
+    auth_error = require_api_key()
+
+    if auth_error:
+        return auth_error
 
     try:
 
