@@ -6,5 +6,5 @@ psql -U admin -d telemetry   =>  Now you are INSIDE real database shell.
 
 SELECT * FROM telemetry_data;
 
-DELETE FROM telemetry_data
-WHERE id > 50;
+            DELETE FROM telemetry_data
+            WHERE id > 50;
