@@ -1,0 +1,18 @@
+groups:
+
+  - name: telemetry_alerts
+
+    rules:
+
+      - alert: HighTelemetryFailures
+
+        expr: rate(telemetry_failures_total[1m]) > 0
+
+        for: 30s
+
+        labels:
+          severity: warning
+
+        annotations:
+          summary: "High telemetry failure rate detected"
+          description: "Telemetry validation failures are occurring"
