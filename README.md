@@ -1,159 +1,141 @@
-````md
 # 🚗 Vehicle Telemetry Platform
 
-A production-style DevOps and observability learning project built using:
+A production-inspired telemetry platform designed to simulate how modern backend systems collect, process, monitor, and operate vehicle telemetry data at scale.
 
-- Python
-- Flask
-- Docker
-- PostgreSQL
-- Prometheus
-- Grafana
-- GitHub Actions CI/CD
-
-The project simulates vehicle telemetry systems and demonstrates real-world DevOps workflows including containerization, monitoring, automation, metrics collection, and infrastructure orchestration.
+The project combines backend development, containerization, observability, CI/CD automation, and Kubernetes orchestration to demonstrate real-world software delivery and operational workflows.
 
 ---
 
-# 📌 Project Goal
+## 🎯 Project Goals
 
-This project is designed to deeply learn and master:
+This project was built to gain practical experience with:
 
-- Linux
-- Docker
-- CI/CD
-- Monitoring & Observability
-- Backend Infrastructure
-- Kubernetes (upcoming)
-- AWS Deployment (upcoming)
-- C++ Telemetry Services (upcoming)
+* Backend service development
+* Containerized application deployment
+* Kubernetes workload orchestration
+* CI/CD automation
+* Monitoring and observability
+* Service reliability and operational troubleshooting
 
-through one evolving production-style system instead of disconnected tutorials.
+Rather than focusing solely on application development, the platform emphasizes how software is deployed, monitored, scaled, and maintained in production environments.
 
 ---
 
-# 🏗️ Current Architecture
+# 🏗️ System Architecture
 
 ```text
-Simulator
-    |
-Backend API
-    |
-PostgreSQL Database
-    |
-Prometheus
-    |
-Grafana
-````
++--------------------+
+| Vehicle Simulator  |
++---------+----------+
+          |
+          | Telemetry Events
+          v
++--------------------+
+| Flask Backend API  |
++---------+----------+
+          |
+          | Store Data
+          v
++--------------------+
+|    PostgreSQL      |
++--------------------+
+
+          |
+          | Metrics
+          v
+
++--------------------+
+|    Prometheus      |
++---------+----------+
+          |
+          | Visualization
+          v
++--------------------+
+|      Grafana       |
++--------------------+
+```
 
 ---
 
-# ⚙️ Current Features
+# 🚀 Key Features
 
-## ✅ Vehicle Telemetry Simulator
+### Telemetry Processing
 
-Simulates vehicle telemetry data such as:
+* Simulates vehicle telemetry generation
+* Processes speed, fuel, and engine metrics
+* Validates incoming telemetry requests
+* Stores telemetry history for analysis
 
-* speed
-* fuel level
-* engine temperature
+### Backend Services
 
----
+* RESTful API architecture
+* Modular Flask application structure
+* Structured logging
+* Health monitoring endpoints
+* Service dependency handling
 
-## ✅ Flask Backend API
+### Containerization
 
-Handles:
+* Dockerized backend services
+* Multi-container architecture
+* Docker Compose orchestration
+* Environment isolation
 
-* telemetry ingestion
-* validation
-* telemetry history APIs
-* metrics exposure
-* health checks
+### Kubernetes Operations
 
----
+* Deployments
+* ReplicaSets
+* Services
+* Scaling
+* Self-healing workloads
+* Rolling updates
+* ConfigMaps
+* Secrets
+* Liveness Probes
+* Readiness Probes
 
-## ✅ PostgreSQL Integration
-
-Stores telemetry records persistently.
-
-Supports:
-
-* INSERT operations
-* SELECT queries
-* telemetry history retrieval
-
----
-
-## ✅ Dockerized Infrastructure
-
-All services run inside containers using Docker Compose.
-
-Services:
-
-* backend
-* simulator
-* postgres
-* prometheus
-* grafana
-
----
-
-## ✅ CI/CD Pipeline
-
-GitHub Actions pipeline automatically:
-
-* builds containers
-* starts services
-* performs health checks
-
----
-
-## ✅ Monitoring & Observability
-
-Integrated:
+### Observability
 
 * Prometheus metrics collection
+* Application monitoring
+* Health checks
+* Operational visibility
 * Grafana dashboards
-* health monitoring
-* structured logging
+
+### CI/CD
+
+* GitHub Actions workflows
+* Automated validation
+* Container build automation
+* Deployment verification
 
 ---
 
-# 📊 Monitoring Stack
+# 🛠️ Technology Stack
 
-## Prometheus
+## Backend
 
-Collects:
+* Python
+* Flask
+* PostgreSQL
 
-* telemetry request metrics
-* failure metrics
-* Python runtime metrics
-* process metrics
+## DevOps & Platform Engineering
 
----
+* Docker
+* Docker Compose
+* Kubernetes
+* GitHub Actions
 
-## Grafana
+## Monitoring
 
-Visualizes:
+* Prometheus
+* Grafana
 
-* telemetry traffic
-* backend activity
-* monitoring dashboards
+## Development Environment
 
----
-
-# 🐳 Technologies Used
-
-| Technology     | Purpose                       |
-| -------------- | ----------------------------- |
-| Python         | backend + automation          |
-| Flask          | API framework                 |
-| Docker         | containerization              |
-| Docker Compose | multi-container orchestration |
-| PostgreSQL     | database                      |
-| GitHub Actions | CI/CD                         |
-| Prometheus     | metrics collection            |
-| Grafana        | dashboards & visualization    |
+* Linux
+* Git
+* VS Code
 
 ---
 
@@ -161,169 +143,161 @@ Visualizes:
 
 ```text
 vehicle-telemetry-platform/
-│
+
 ├── backend/
+│   ├── routes/
+│   ├── services/
+│   ├── database/
+│   ├── middleware/
+│   └── monitoring/
+│
 ├── simulator/
-├── scripts/
+│
 ├── prometheus/
-├── monitoring_logs/
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
+│
+├── grafana/
+│
+├── nginx/
+│
+├── k8s/
+│
+├── logs/
+│
+├── .github/
+│   └── workflows/
+│
+└── docker-compose.yml
 ```
 
 ---
 
-# 🚀 Getting Started
+# 🐳 Running with Docker Compose
 
-## Clone Repository
-
-```bash
-git clone <repository_url>
-cd vehicle-telemetry-platform
-```
-
----
-
-## Start Infrastructure
+Build and start all services:
 
 ```bash
 docker compose up --build
 ```
 
----
-
-## Run In Background
-
-```bash
-docker compose up -d
-```
-
----
-
-# 🌐 Services
-
-| Service     | URL                   |
-| ----------- | --------------------- |
-| Backend API | http://localhost:5000 |
-| Prometheus  | http://localhost:9090 |
-| Grafana     | http://localhost:3000 |
-
----
-
-# 📈 Prometheus Metrics Endpoint
-
-```text
-http://localhost:5000/metrics
-```
-
----
-
-# ❤️ Health Endpoint
-
-```text
-http://localhost:5000/health
-```
-
----
-
-# 📜 Telemetry History Endpoint
-
-```text
-http://localhost:5000/telemetry/history
-```
-
----
-
-# 🔍 Useful Docker Commands
-
-## Running Containers
+Verify containers:
 
 ```bash
 docker ps
 ```
 
+Available services:
+
+| Service     | Port |
+| ----------- | ---- |
+| Backend API | 5000 |
+| PostgreSQL  | 5432 |
+| Prometheus  | 9090 |
+| Grafana     | 3000 |
+| NGINX       | 8080 |
+
 ---
 
-## View Logs
+# ☸️ Running on Kubernetes
+
+Apply Kubernetes resources:
 
 ```bash
-docker logs telemetry_backend
+kubectl apply -f k8s/
 ```
 
----
-
-## Follow Logs
+Verify deployment:
 
 ```bash
-docker logs -f telemetry_backend
+kubectl get deployments
+kubectl get pods
+kubectl get svc
 ```
 
----
-
-## Stop Infrastructure
+Scale workloads:
 
 ```bash
-docker compose down
+kubectl scale deployment telemetry-backend --replicas=3
+```
+
+Monitor rollout:
+
+```bash
+kubectl rollout status deployment telemetry-backend
 ```
 
 ---
 
-# 🧠 Important Concepts Learned
+# 🔍 Monitoring & Observability
 
-* Docker networking
-* container lifecycle
-* retry logic
-* service dependencies
-* health monitoring
-* CI/CD automation
-* metrics collection
-* observability
-* Prometheus scraping
-* Grafana dashboards
-* distributed system basics
+The platform exposes metrics that can be collected by Prometheus and visualized through Grafana dashboards.
 
----
+Monitoring focuses on:
 
-# 🛣️ Upcoming Roadmap
+* API health
+* Request traffic
+* Telemetry ingestion
+* Service availability
+* Operational visibility
 
-* backend refactoring
-* Redis caching
-* reverse proxy integration
-* alerting system
-* Kubernetes deployment
-* AWS deployment
-* Terraform infrastructure
-* C++ telemetry engine
-* advanced CI/CD pipelines
-* production scaling
+Example endpoint:
 
----
-
-# 📌 Future Goal
-
-Transform this project into a realistic cloud-native DevOps platform integrating:
-
-* backend systems
-* observability stack
-* infrastructure automation
-* Kubernetes orchestration
-* cloud deployment
-* embedded C++ telemetry services
-
----
-
-# 👨‍💻 Learning Focus
-
-This project prioritizes:
-
-* depth over buzzwords
-* production-style architecture
-* real debugging experience
-* system understanding
-* infrastructure thinking
-
-instead of isolated tutorials.
-
+```text
+/metrics
 ```
-```
+
+---
+
+# 🧪 Reliability & Operations
+
+The Kubernetes deployment includes:
+
+### Readiness Probes
+
+Ensures traffic is routed only to healthy application instances.
+
+### Liveness Probes
+
+Automatically restarts unhealthy workloads.
+
+### Self-Healing
+
+Failed containers are automatically replaced by Kubernetes.
+
+### Rolling Updates
+
+Application updates are deployed gradually without service interruption.
+
+---
+
+# 📈 What I Learned
+
+Through this project I gained practical experience with:
+
+* Building containerized backend services
+* Kubernetes workload management
+* Application scaling and recovery
+* Health monitoring and observability
+* CI/CD workflow design
+* Configuration and secret management
+* Debugging distributed systems
+* Production-oriented troubleshooting
+
+---
+
+# 🔮 Future Enhancements
+
+* AWS EKS deployment
+* Terraform-based infrastructure provisioning
+* Persistent Volumes for stateful workloads
+* Kubernetes Ingress Controller
+* Centralized logging stack
+* Automated Kubernetes deployments
+* Cloud-native monitoring and alerting
+
+---
+
+# 🤝 Motivation
+
+This project was created as a hands-on learning platform to understand how modern software systems are built, deployed, monitored, and operated using contemporary DevOps and cloud-native engineering practices.
+
+The focus is not only on writing software but also on delivering and operating reliable software in production-like environments.
