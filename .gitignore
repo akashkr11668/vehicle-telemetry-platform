@@ -3,4 +3,3 @@ logs/
 venv/
 monitoring_logs
 cpp_telemetry_engine/build/
-.env
