@@ -2,3 +2,7 @@ venv/
 logs/
 .git/
 __pycache__/
+.env
+.github/
+docs/
+scripts/

@@ -25,9 +25,15 @@ while True:
     }
 
     # This sends HTTP POST request to backend.
+
+    headers = {
+    "x-api-key": "supersecretkey"
+    }
+    
     response = requests.post(
         BACKEND_URL,
-        json=telemetry_data
+        json=telemetry_data,
+        headers=headers
     )
 
     logging.basicConfig(

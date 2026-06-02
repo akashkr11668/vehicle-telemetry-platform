@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: telemetry-backend
+
+spec:
+
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: telemetry-backend
+
+  template:
+
+    metadata:
+      labels:
+        app: telemetry-backend
+        version: v2
+
+    spec:
+
+      containers:
+
+      - name: backend
+
+        image: vehicle-telemetry-platform-backend:latest
+
+        envFrom:
+        - configMapRef:
+            name: telemetry-config
+
+        - secretRef:
+            name: telemetry-secret
+
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 5000
+
+        livenessProbe:
+
+          httpGet:
+            path: /health
+            port: 5000
+
+          initialDelaySeconds: 10
+
+          periodSeconds: 15
+
+        readinessProbe:
+
+          httpGet:
+            path: /health
+            port: 5000
+
+          initialDelaySeconds: 5
+
+          periodSeconds: 10
