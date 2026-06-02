@@ -7,7 +7,11 @@ from monitoring.metrics import (
     telemetry_failures_total
 )
 
+
+
 def process_telemetry(data):
+
+    logging.error(f"PAYLOAD RECEIVED: {data}")
 
     required_fields = [
         "vehicle_id",

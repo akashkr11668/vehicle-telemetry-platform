@@ -1,0 +1,251 @@
+Kubernetes Cluster
+
+A Kubernetes system is called:
+
+cluster
+
+Cluster =
+
+group of machines working together
+
+VERY important.
+
+Beginner Mental Model
+
+Imagine:
+
+many servers
+working together
+as ONE system
+
+That is Kubernetes cluster.
+
+Inside Cluster There Are TWO Main Parts
+1. Control Plane
+2. Worker Nodes
+
+THIS is the MOST important architecture split.
+
+SIMPLE ANALOGY
+
+Think:
+
+Control Plane = brain/manager
+Worker Nodes = workers/machines
+
+VERY important analogy 😄
+
+1. Control Plane (THE BRAIN)
+
+This is:
+
+decision-making layer
+
+It:
+
+manages cluster
+schedules workloads
+monitors desired state
+handles orchestration logic
+VERY IMPORTANT
+
+Control plane usually does NOT run your applications directly.
+
+Instead:
+
+it manages the whole system.
+Main Components Inside Control Plane
+
+Don’t memorize yet 😄
+
+Just understand purpose.
+
+API Server
+Front door of Kubernetes
+
+EVERYTHING talks through:
+
+API Server
+
+Example:
+
+kubectl commands
+deployments
+scaling requests
+
+ALL go through API server.
+
+SIMPLE FLOW
+You
+ |
+kubectl
+ |
+API Server
+ |
+Kubernetes Cluster
+
+VERY important.
+
+Scheduler
+
+Scheduler decides:
+
+which machine should run container?
+
+VERY important orchestration role.
+
+Example
+
+Suppose:
+
+Node 1 overloaded
+Node 2 free
+
+Scheduler intelligently chooses:
+
+Node 2
+
+VERY important production behavior.
+
+etcd
+
+This is:
+
+cluster database
+
+Stores:
+
+cluster state
+deployments
+configs
+secrets
+desired state
+
+VERY critical component.
+
+Controller Manager
+
+This is:
+
+self-healing engine
+
+It constantly checks:
+
+desired state == actual state ?
+
+If NOT:
+it fixes cluster automatically.
+
+THIS is the heart of Kubernetes automation.
+
+Example
+
+Desired:
+
+3 backend replicas
+
+Actual:
+
+2 replicas alive
+
+Controller notices mismatch.
+
+Automatically creates:
+
+replacement pod
+
+VERY important concept.
+
+NOW Worker Nodes
+
+Worker nodes are:
+
+actual machines running applications
+
+This is where:
+
+containers run
+applications execute
+workloads live
+Each Worker Node Contains
+kubelet
+Kubernetes agent on machine
+
+kubelet receives instructions like:
+
+run this pod
+restart this pod
+check pod health
+
+VERY important component.
+
+Container Runtime
+
+This actually runs containers.
+
+Earlier:
+mostly Docker.
+
+Now often:
+
+containerd
+CRI-O
+
+But concept same:
+
+something runs containers
+kube-proxy
+
+Handles:
+
+networking inside cluster
+
+VERY important later.
+
+HUGE FULL PICTURE
+                 Control Plane
+        --------------------------------
+        API Server
+        Scheduler
+        Controller Manager
+        etcd
+        --------------------------------
+                    |
+        --------------------------------
+               Worker Nodes
+        --------------------------------
+        kubelet
+        container runtime
+        kube-proxy
+        your containers
+        --------------------------------
+
+This is the CORE Kubernetes architecture.
+
+MOST IMPORTANT Beginner Understanding
+
+Kubernetes is basically:
+
+Control Plane
+      |
+continuously managing
+      |
+Worker Nodes
+      |
+running containers
+
+THAT is Kubernetes.
+
+VERY IMPORTANT Mental Shift
+
+Docker:
+
+run container manually
+
+Kubernetes:
+
+declare desired system state
+      |
+platform continuously maintains it
+
+MASSIVE difference.

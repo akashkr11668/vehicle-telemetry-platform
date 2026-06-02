@@ -1,0 +1,30 @@
+1. kubectl cluster-info  ->  kubectl cluster-info
+
+2. kubectl get nodes  ->  check Nodes
+
+1. kubectl apply -f deployment.yaml  ->  Create Deployment
+
+1. kubectl get deployments  ->  See Deployments
+
+1. kubectl describe deployment telemetry-backend  ->  Deployment Details
+
+1. kubectl rollout restart deployment telemetry-backend  ->  Restart Deployment
+
+1. kubectl delete deployment telemetry-backend  ->  Delete Deployment
+
+1. kubectl logs deployment/telemetry-backend  ->  View Logs
+
+1. kubectl logs -f deployment/telemetry-backend  ->  Follow Logs Live
+
+1. kubectl exec -it deployment/telemetry-backend -- sh  ->  Exec Into Pod
+
+1. kubectl scale deployment telemetry-backend --replicas=3  ->  Scaling Commands
+
+1. minikube image load vehicle-telemetry-platform-backend:latest   ->  Load Image Into Minikube
+
+1. docker build --no-cache \
+-t vehicle-telemetry-platform-backend:latest .  ->  Rebuild
+
+kubectl get pods
+
+kubectl exec -it <pod> -- sh
