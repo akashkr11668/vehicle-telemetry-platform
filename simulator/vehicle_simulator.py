@@ -1,48 +1,42 @@
 import requests
 import random
 import time
-import logging
 import os
 
-BACKEND_URL = os.getenv(
+URL = os.getenv(
     "BACKEND_URL",
-    "http://backend:5000/telemetry"
+    "http://telemetry-backend-service:5000/telemetry"
 )
 
-vehicle_ids = [
-    "CAR_001",
-    "CAR_002",
-    "CAR_003"
-]
+HEADERS = {
+    "x-api-key": "supersecretkey",
+    "Content-Type": "application/json"
+}
 
 while True:
 
-    telemetry_data = {
-        "vehicle_id": random.choice(vehicle_ids),  # randomly choose vehicle_ids
-        "speed": random.randint(0, 150),  # randomly choose values between 0 to 150
-        "engine_temp": random.randint(70, 120),
-        "fuel_level": random.randint(-20, 120)  #randomly choose values between -20 to 120 but negative gives an err
+    payload = {
+        "vehicle_id": "CAR_001",
+        "speed": random.randint(0, 120),
+        "engine_temp": random.randint(70, 110),
+        "fuel_level": random.randint(-20, 100)
     }
 
-    # This sends HTTP POST request to backend.
+    try:
 
-    headers = {
-    "x-api-key": "supersecretkey"
-    }
-    
-    response = requests.post(
-        BACKEND_URL,
-        json=telemetry_data,
-        headers=headers
-    )
+        response = requests.post(
+            URL,
+            json=payload,
+            headers=HEADERS
+        )
 
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s %(levelname)s %(message)s'
-    )
+        print(
+            payload,
+            response.status_code
+        )
 
-    logging.info(f"Telemetry Sent: {telemetry_data}")
-    logging.info(f"Server Response: {response.json()}")
+    except Exception as e:
 
-    #Waits 5 seconds before next telemetry transmission. Without this: simulator would spam thousands of requests instantly.
-    time.sleep(5)
+        print(e)
+
+    time.sleep(1)

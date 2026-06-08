@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: telemetry-simulator
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: telemetry-simulator
+
+  template:
+
+    metadata:
+      labels:
+        app: telemetry-simulator
+
+    spec:
+
+      containers:
+
+      - name: simulator
+
+        image: vehicle-telemetry-platform-simulator:latest
+
+        imagePullPolicy: Never
+
+        command:
+        - python
+
+        args:
+        - simulator/vehicle_simulator.py
+
+        env:
+        - name: BACKEND_URL
+          value: "http://telemetry-backend-service:5000/telemetry"
