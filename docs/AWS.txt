@@ -1,0 +1,62 @@
+AWS:
+
+VPC
+ |
+ ├── Public Subnet
+ ├── Private Subnet
+ └── Private Subnet
+
+The VPC is your private network.
+
+Everything important lives inside it.
+
+Internet
+    |
+Load Balancer
+    |
+Public Subnet
+    |
+EKS Cluster
+    |
+Private Subnet
+    |
+Backend Pods
+Simulator Pods
+    |
+Private Subnet
+    |
+RDS PostgreSQL
+
+You have:
+
+Default VPC
+│
+├── Subnet A → ap-south-1a
+├── Subnet B → ap-south-1b
+└── Subnet C → ap-south-1c
+
+Why Does AWS Create 3 Subnets?
+
+Imagine:
+
+AZ-A burns down 🔥
+
+If all servers are there:
+
+Application Down ❌
+
+Instead AWS encourages:
+
+AZ-A
+AZ-B
+AZ-C
+
+So workloads can survive failures.
+
+Then Kubernetes schedules:
+
+Backend Pod 1 → AZ-A
+Backend Pod 2 → AZ-B
+Backend Pod 3 → AZ-C
+
+ssh -i telemetry-key.pem ubuntu@<PUBLIC-IP>   -> to access ec2 instance localy
