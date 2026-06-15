@@ -8,4 +8,6 @@ health_routes = Blueprint(
 @health_routes.route("/health")
 def health():
 
-    return {"status": "healthy"}, 200
+    return {"status": "healthy",
+            "version": "v2"
+}, 200

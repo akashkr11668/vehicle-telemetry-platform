@@ -1,7 +1,7 @@
 services:
 
   backend:
-    build: .
+    image: 948075159533.dkr.ecr.ap-south-1.amazonaws.com/telemetry-backend:latest
 
     env_file:
       - .env
