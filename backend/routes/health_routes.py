@@ -8,6 +8,7 @@ health_routes = Blueprint(
 @health_routes.route("/health")
 def health():
 
-    return {"status": "healthy",
-            "version": "v2"
-}, 200
+    return jsonify({
+        "status": "healthy",
+        "version": "v2"
+})
