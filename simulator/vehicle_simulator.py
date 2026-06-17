@@ -39,4 +39,4 @@ while True:
 
         print(e)
 
-    time.sleep(1)
+    time.sleep(3)
