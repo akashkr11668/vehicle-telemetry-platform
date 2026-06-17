@@ -1,0 +1,5 @@
+docker logs telemetry_backend --tail 50
+
+docker exec telemetry_backend env | grep POSTGRES
+
+docker logs telemetry_backend | grep -i -E "database|postgres|error"

@@ -4,7 +4,26 @@ psql -U admin -d telemetry   =>  Now you are INSIDE real database shell.
 
 \dt  ->  Shows database tables.
 
+CREATE TABLE telemetry_data (
+    id SERIAL PRIMARY KEY,
+    vehicle_id VARCHAR(50),
+    speed INTEGER,
+    engine_temp INTEGER,
+    fuel_level INTEGER
+);
+
 SELECT * FROM telemetry_data;
 
             DELETE FROM telemetry_data
             WHERE id > 50;
+
+SELECT COUNT(*) FROM telemetry_data;
+
+
+psql -h telemetry-db.cho4mo8o61r0.ap-south-1.rds.amazonaws.com \
+-U postgres \
+-d telemetry
+
+\q
+\l
+\dt
